@@ -3,7 +3,7 @@ Uma simples calculadora em python para fazer calculos de estatística em um grup
 
 # Como utilizar
 
-Apenas vá para a pasta ```src``` e digite
+Apenas vá para a pasta ```src``` e digite no terminal
 
 ```python3 estatistica.py```
 
