@@ -13,6 +13,6 @@ Insira os dados separados por espaço e pressione enter.
 
 * Media aritmética 
 * Mediana
-* Moda (e o tipo)
+* Moda (e o tipo de moda)
 * Desvio Padrão
 * Coeficiente de variação
