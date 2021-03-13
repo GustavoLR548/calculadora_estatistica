@@ -12,7 +12,10 @@ Insira os dados separados por espaço e pressione enter.
 # Dados a serem imprimidos na tela
 
 * Media aritmética 
-* Mediana
+* Mediana/ 2° Quartil
 * Moda (e o tipo de moda)
+* Variância
 * Desvio Padrão
 * Coeficiente de variação
+* 1° Quartil
+* 3° Quartil
