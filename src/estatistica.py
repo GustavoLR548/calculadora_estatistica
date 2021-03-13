@@ -11,7 +11,6 @@ def media_aritmetica(list):
 
 def mediana(list):
 
-    list.sort()
     result = 0.0
     size = len(list)
     if(size % 2 == 0):
@@ -38,7 +37,7 @@ def coeficiente_de_variacao(list,dp,ma):
     return dp/ma*100
 
 def primeiro_quartil(list):
-    list.sort()
+
     result = 0.0
     size = len(list) 
     if(size%2 == 0):
@@ -49,7 +48,7 @@ def primeiro_quartil(list):
     return result
 
 def terceiro_quartil(list):
-    list.sort()
+
     result = 0.0
     size = len(list) 
     if(size%2 == 0):
@@ -67,6 +66,8 @@ input_string = input('Insira os números:\n(Obs: Coloque todos os números separ
 number_list = list(map(float, input_string.split()))
 
 print("\nResultado:\n")
+
+number_list.sort()
 
 ma = media_aritmetica(number_list)
 me = mediana(number_list)
@@ -89,13 +90,21 @@ elif (len(mo) == 2):
 else: 
     tipo_de_moda = "multimodal"
 
+size = len(number_list)
+
+print("Tamanho da lista: " + str(size))
+print("-----------------------")
+
+print("Maior elemento: " + str(number_list[size-1]))
+print("Menor elemento: " + str(number_list[0]))
+print("------------------------")
+
 print("Media aritmética:        " + str(ma))
 print("Mediana/2°Quartil:       " + str(me))
 print("Moda:                    " + str(mo) + " " + tipo_de_moda)
 print("Variância:               " + str(va) + "%")
 print("Desvio Padrão:           " + str(dp) + "%")
 print("Coeficiente de variação: " + str(cv) + "%") 
-
 print("Primeiro quartil:        " + str(q1)) 
 print("Terceiro quartil:        " + str(q3)) 
 
