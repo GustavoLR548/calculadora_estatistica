@@ -15,6 +15,8 @@ Insira os dados separados por espaço e pressione enter.
 
 # Dados a serem imprimidos na tela
 
+### Dados agrupados por ponto
+
 * Número de dados
 * Maior e Menor número
 * Media aritmética 
@@ -25,3 +27,7 @@ Insira os dados separados por espaço e pressione enter.
 * Coeficiente de variação
 * 1° Quartil
 * 3° Quartil
+
+### Dados agrupados por intervalo
+
+(ainda a ser implementado)
