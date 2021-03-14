@@ -11,6 +11,8 @@ Insira os dados separados por espaço e pressione enter.
 
 # Dados a serem imprimidos na tela
 
+* Número de dados
+* Maior e Menor número
 * Media aritmética 
 * Mediana/ 2° Quartil
 * Moda (e o tipo de moda)
