@@ -1,5 +1,5 @@
-import collections
 import math
+import collections
 from math import sqrt
 
 def media_aritmetica(list):
@@ -21,7 +21,20 @@ def mediana(list):
     return result;
 
 def moda(list): 
-    return ([item for item, count in collections.Counter(list).items() if count > 1])
+    ocurrences_of_list_numbers = {}
+
+    for i in list: 
+        ocurrences_of_list_numbers.update({i:list.count(i)})
+
+    highest_frequency = max(ocurrences_of_list_numbers.values(), key=float)
+
+    list_of_most_frequent_numbers = []
+
+    for i,j in ocurrences_of_list_numbers.items():
+        if(j == highest_frequency):
+            list_of_most_frequent_numbers.append(i)
+
+    return list_of_most_frequent_numbers
 
 def variancia(list,ma):
     resultado = 0
