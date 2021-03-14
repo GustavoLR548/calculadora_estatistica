@@ -1,5 +1,3 @@
-import math
-import collections
 from math import sqrt
 
 def media_aritmetica(list):
