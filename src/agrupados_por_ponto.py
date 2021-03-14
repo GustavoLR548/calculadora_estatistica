@@ -1,4 +1,6 @@
 from math import sqrt
+import subprocess as sp
+import platform
 
 def media_aritmetica(list):
     soma = 0
@@ -69,54 +71,75 @@ def terceiro_quartil(list):
     
     return result
 
-
  
+input_string = ""
 
-input_string = input('Insira os números:\n(Obs: Coloque todos os números separados por espaço)\n->')
+os = platform.system()
+clear_screen = ""
 
-number_list = list(map(float, input_string.split()))
-
-print("\nResultado:\n")
-
-number_list.sort()
-
-ma = media_aritmetica(number_list)
-me = mediana(number_list)
-mo = moda(number_list)
-va = variancia(number_list,ma)
-dp = sqrt(va)
-cv = coeficiente_de_variacao(number_list,dp,ma)
-
-q1 = primeiro_quartil(number_list)
-q3 = terceiro_quartil(number_list)
-
-tipo_de_moda = ""
-
-if (len(mo) == 0):
-    tipo_de_moda = "amodal"
-elif (len(mo) == 1):
-    tipo_de_moda = "unimodal"
-elif (len(mo) == 2):
-    tipo_de_moda = "bimodal"
+if(os == "Windows" or os == "Darwin"):
+    clear_screen = "cls"
 else: 
-    tipo_de_moda = "multimodal"
+    clear_screen = "clear"
 
-size = len(number_list)
-
-print("Tamanho da lista: " + str(size))
-print("-----------------------")
-
-print("Maior elemento: " + str(number_list[size-1]))
-print("Menor elemento: " + str(number_list[0]))
-print("------------------------")
-
-print("Media aritmética:        " + str(ma))
-print("Mediana/2°Quartil:       " + str(me))
-print("Moda:                    " + str(mo) + " " + tipo_de_moda)
-print("Variância:               " + str(va) + "%")
-print("Desvio Padrão:           " + str(dp) + "%")
-print("Coeficiente de variação: " + str(cv) + "%") 
-print("Primeiro quartil:        " + str(q1)) 
-print("Terceiro quartil:        " + str(q3)) 
+quit = "0"
 
 
+while ( quit != "-1"):
+
+    tmp = sp.call(clear_screen, shell=True)
+
+    input_string = input('Insira os números:\n(Obs: Coloque todos os números separados por espaço)\n(Obs2: Digite \'-1\' para sair do programa)\n->')
+
+    if(input_string == '-1'):
+        break
+
+    number_list = list(map(float, input_string.split()))
+
+    print("\nResultado:\n")
+
+    number_list.sort()
+
+    ma = media_aritmetica(number_list)
+    me = mediana(number_list)
+    mo = moda(number_list)
+    va = variancia(number_list,ma)
+    dp = sqrt(va)
+    cv = coeficiente_de_variacao(number_list,dp,ma)
+
+    q1 = primeiro_quartil(number_list)
+    q3 = terceiro_quartil(number_list)
+
+    tipo_de_moda = ""
+
+    if (len(mo) == 0):
+        tipo_de_moda = "amodal"
+    elif (len(mo) == 1):
+        tipo_de_moda = "unimodal"
+    elif (len(mo) == 2):
+        tipo_de_moda = "bimodal"
+    else: 
+        tipo_de_moda = "multimodal"
+
+    size = len(number_list)
+
+    print("Tamanho da lista:        " + str(size))
+    print("---------------------------------------")
+
+    print("Maior elemento:          " + str(number_list[size-1]))
+    print("Menor elemento:          " + str(number_list[0]))
+    print("---------------------------------------")
+
+    print("Media aritmética:        " + str(ma))
+    print("Mediana/2°Quartil:       " + str(me))
+    print("Moda:                    " + str(mo) + " " + tipo_de_moda)
+    print("Variância:               " + str(va) + "%")
+    print("Desvio Padrão:           " + str(dp) + "%")
+    print("Coeficiente de variação: " + str(cv) + "%") 
+    print("Primeiro quartil:        " + str(q1)) 
+    print("Terceiro quartil:        " + str(q3))
+
+    quit = input("\nQuer sair do programa?\nDigite \'-1\' para sair\nDigite qualquer coisa para continuar\n->")
+
+
+tmp = sp.call(clear_screen, shell=True)
