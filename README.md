@@ -30,4 +30,8 @@ Insira os dados separados por espaço e pressione enter.
 
 ### Dados agrupados por intervalo
 
-(ainda a ser implementado)
+* Media aritmética 
+* Mediana/ 2° Quartil
+* Variância
+* Desvio Padrão
+* Coeficiente de variação
