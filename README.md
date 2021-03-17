@@ -1,4 +1,7 @@
 # Calculadora estatística
+
+![MIT_LICENSE](https://img.shields.io/badge/license-MIT-green)
+
 Uma simples calculadora em python para fazer calculos de estatística em um grupo de dados
 
 # Como utilizar
