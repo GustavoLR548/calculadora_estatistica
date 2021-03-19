@@ -7,7 +7,7 @@ def media_aritmetica(list):
     for x in list: 
         soma += x
 
-    return soma/len(list)
+    return round(soma/len(list),2)
 
 def mediana(list):
 
@@ -18,7 +18,7 @@ def mediana(list):
     else:
         result = list[int(size/2)];
 
-    return result;
+    return round(result,2);
 
 def moda(list): 
     ocurrences_of_list_numbers = {}
@@ -27,6 +27,9 @@ def moda(list):
         ocurrences_of_list_numbers.update({i:list.count(i)})
 
     highest_frequency = max(ocurrences_of_list_numbers.values(), key=float)
+
+    if(highest_frequency == 1):
+        return []
 
     list_of_most_frequent_numbers = []
 
@@ -44,10 +47,10 @@ def variancia(list,ma):
 
     resultado /= len(list) -1
 
-    return resultado
+    return round(resultado,2)
     
 def coeficiente_de_variacao(list,dp,ma):
-    return dp/ma*100
+    return round(dp/ma*100,2)
 
 def primeiro_quartil(list):
 
@@ -58,7 +61,7 @@ def primeiro_quartil(list):
     else: 
         result = media_aritmetica(list[1:int(size/2)])
     
-    return result
+    return round(result)
 
 def terceiro_quartil(list):
 
@@ -69,7 +72,7 @@ def terceiro_quartil(list):
     else: 
         result = media_aritmetica(list[int(size/2+1):int(size-1)])
     
-    return result
+    return round(result)
 
  
 input_string = ""
@@ -104,7 +107,7 @@ while ( quit != "-1"):
     me = mediana(number_list)
     mo = moda(number_list)
     va = variancia(number_list,ma)
-    dp = sqrt(va)
+    dp = round(sqrt(va),2)
     cv = coeficiente_de_variacao(number_list,dp,ma)
 
     q1 = primeiro_quartil(number_list)
@@ -129,7 +132,7 @@ while ( quit != "-1"):
     print("Maior elemento:          " + str(number_list[size-1]))
     print("Menor elemento:          " + str(number_list[0]))
     print("---------------------------------------")
-
+    print("Ponto Médio:             " + str((number_list[size-1]+number_list[0])/2))
     print("Media aritmética:        " + str(ma))
     print("Mediana/2°Quartil:       " + str(me))
     print("Moda:                    " + str(mo) + " " + tipo_de_moda)

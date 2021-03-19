@@ -1,6 +1,7 @@
 import subprocess as sp
 import platform
 from math import sqrt
+from prettytable import PrettyTable
 
 def frequencia_absoluta(list): 
     result = []
@@ -10,7 +11,16 @@ def frequencia_absoluta(list):
         if (i == 0):
             continue 
         
-        result.append(list[i] - list[i-1])
+        result.append(round(list[i] - list[i-1],1))
+
+    return result
+
+def frequencia_acumulada(list): 
+    result = []
+    acumulador = 0
+    for i in range(len(list)): 
+        acumulador += list[i]
+        result.append(round(acumulador,1))
 
     return result
 
@@ -21,7 +31,7 @@ def intervalos(list,n):
         if(i == 0):
             continue
 
-        list.append(list[i]+interval)
+        list.append(round(list[i]+interval,1))
 
     return list
 
@@ -29,7 +39,7 @@ def intervalosToString(list):
     result = [] 
 
     for i in range(len(list) - 1): 
-        result.append(str(list[i]) + '-' + str(list[i+1])) 
+        result.append(str(round(list[i],1)) + '-' + str(round(list[i+1],1)))
 
     return result
 
@@ -37,7 +47,7 @@ def media(list):
     result = [] 
 
     for i in range(len(list)-1):
-        result.append((list[i] + list[i+1])/2)
+        result.append(round((list[i] + list[i+1])/2,1))
 
     return result
 
@@ -45,7 +55,7 @@ def mediaXfrequencia(f,m):
     result = [] 
 
     for i in range(len(f)): 
-        result.append(f[i] * m[i])
+        result.append(round(f[i] * m[i],1))
 
     return result
 
@@ -53,18 +63,9 @@ def media2Xfrequencia(f,m):
     result = [] 
 
     for i in range(len(f)): 
-        result.append(f[i] * (m[i]**2))
+        result.append(round(f[i] * (m[i]**2),1))
 
     return result
-
-def printTable(intervalos,frequencia,f_acumulada,media,mxf,m2xf): 
-
-    print("\nTabela\n\n-------------------------------------------------------------")
-
-    for i in range(len(intervalos)): 
-        print("| " + str(intervalos[i]) + "  |  " + str(frequencia[i]) + "  |  " + str(f_acumulada[i]) + "  |  " + str(media[i]) + "  |  " + str(mxf[i]) + "  |  " + str(m2xf[i]) + "  |  ")
-
-    print("-------------------------------------------------------------------------")
 
 def media_aritmetica(mxf,n): 
     result = 0
@@ -72,7 +73,7 @@ def media_aritmetica(mxf,n):
     for i in range(len(mxf)): 
         result += mxf[i]
 
-    return result/n
+    return round(result/n,1)
 
 def desvio_padrao(m2xf,n,ma): 
     result = 0
@@ -84,10 +85,16 @@ def desvio_padrao(m2xf,n,ma):
 
     result /= n -1 
 
-    return sqrt(result)
+    return round(sqrt(result),1)
 
-def mediana(li, n, faa, fi, h): 
-    return li + ((n/2 - faa)/fi) * h
+def mediana(intervalo,f_acumulada,f_absoluta,n): 
+    limite = list(map(float, intervalo[int(len(intervalo)/2)].split("-")))
+
+    f_acumulada_anterior = f_acumulada[int(len(f_acumulada)/2-1)]
+
+    f_absoluta_meio = f_absoluta[int(len(f_absoluta)/2)]
+
+    return round(limite[0] + ((n/2 - f_acumulada_anterior) / f_absoluta_meio) * (limite[1] - limite[0]),1)
 
 input_string = ""
 
@@ -111,7 +118,6 @@ while ( quit != "-1"):
 
     opcao = input("O que você possui? A frequência acumulada(0) ou relativa(1)?\n->")
 
-
     if(opcao == "0"):
         print("Você escolheu: frequência acumulada")
 
@@ -134,14 +140,80 @@ while ( quit != "-1"):
 
         s_intervalos = intervalosToString(intervalos)
 
-        printTable(s_intervalos,f_absoluta,f_acumulada,m,mxf,m2xf)
+        table = PrettyTable() 
+
+        table.add_column("intervalos", s_intervalos)
+        table.add_column("f_absoluta", f_absoluta)
+        table.add_column("f_acumulada", f_acumulada)
+        table.add_column("x_i", m)
+        table.add_column("x_i * f_ab", mxf)
+        table.add_column("x_i^2 * f_ab", m2xf)
+
+        print(table)
 
         ma = media_aritmetica(mxf,n_data)
 
-        dv = desvio_padrao(m2xf,n_data,ma)
+        dp = desvio_padrao(m2xf,n_data,ma)
+        
+        me = mediana(s_intervalos,f_acumulada,f_absoluta,n_data)
+
+        print("Media aritmética:        " + str(ma))
+        print("Mediana/2°Quartil:       " + str(me))
+
+        print("Variância:               " + str(dp**2) + "%")
+        print("Desvio Padrão:           " + str(dp) + "%")
+        print("Coeficiente de variação: " + str(dp/ma*100) + "%") 
 
     elif(opcao == "1"):
         print("Você escolheu: frequência relativa")
+
+        n = int(input("Insira a quantidade de elementos\n->"))
+
+        f_porcentagem = input("Insira os dados(em porcentagem):\n-> ")
+
+        f_porcentagem = list(map(float, f_porcentagem.split()))
+
+        f_absoluta = []
+
+        for i in range(len(f_porcentagem)):
+            f_absoluta.append(round((f_porcentagem[i] / 100) * n))
+
+        f_acumulada = frequencia_acumulada(f_absoluta)
+
+        intervalos = intervalos(primeiro_intervalo,len(f_porcentagem))
+
+        m = media(intervalos)
+
+        mxf = mediaXfrequencia(m,f_absoluta)
+
+        m2xf = media2Xfrequencia(f_absoluta,m)
+
+        s_intervalos = intervalosToString(intervalos)
+
+        table = PrettyTable() 
+
+        table.add_column("intervalos", s_intervalos)
+        table.add_column("f_absoluta", f_absoluta)
+        table.add_column("f_acumulada", f_acumulada)
+        table.add_column("x_i", m)
+        table.add_column("x_i * f_ab", mxf)
+        table.add_column("x_i^2 * f_ab", m2xf)
+
+        print(table)
+
+        ma = media_aritmetica(mxf,n)
+
+        dp = desvio_padrao(m2xf,n,ma)
+        
+        me = mediana(s_intervalos,f_acumulada,f_absoluta,n)
+
+        print("Media aritmética:        " + str(ma))
+        print("Mediana/2°Quartil:       " + str(me))
+
+        print("Variância:               " + str(dp**2) + "%")
+        print("Desvio Padrão:           " + str(dp) + "%")
+        print("Coeficiente de variação: " + str(round(dp/ma*100,1)) + "%") 
+
     else: 
         print("Opção não existente")
 
