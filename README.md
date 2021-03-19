@@ -6,7 +6,16 @@ Uma simples calculadora em python para fazer calculos de estatística em um grup
 
 # Como utilizar
 
-Apenas vá para a pasta ```src``` e digite no terminal
+*UPDATE* 
+
+Antes de usar o programa, não se esqueça de baixar todos os pacotes necessários para utilizar os programas,
+mais especificadamente a instalação do "PrettyTables", biblioteca que usei para formatar o print dos resultados
+
+Para instalar as bibliotecas necessárias, abra o terminal na pasta onde está o ```requirements.txt```, e digite: 
+
+``` pip install -r requirements.txt ``` 
+
+Pronto! Agora apenas vá para a pasta ```src``` e digite no terminal
 
 ```python3 agrupados_por_ponto.py``` se você estiver trabalhando com dados agrupados por ponto 
 
@@ -18,7 +27,7 @@ Insira os dados separados por espaço e pressione enter.
 
 # Dados a serem imprimidos na tela
 
-### Dados agrupados por ponto
+## Dados agrupados por ponto
 
 * Número de dados
 * Maior e Menor número
@@ -31,7 +40,14 @@ Insira os dados separados por espaço e pressione enter.
 * 1° Quartil
 * 3° Quartil
 
-### Dados agrupados por intervalo
+## Dados agrupados por intervalo
+
+### No atual momento,é possível calcular usando: 
+
+* Frequência relativa
+* Frequência acumulada
+
+E gerar...
 
 * Media aritmética 
 * Mediana/ 2° Quartil
