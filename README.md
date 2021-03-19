@@ -1,4 +1,7 @@
 # Calculadora estatística
+
+![MIT_LICENSE](https://img.shields.io/badge/license-MIT-green)
+
 Uma simples calculadora em python para fazer calculos de estatística em um grupo de dados
 
 # Como utilizar
@@ -30,4 +33,8 @@ Insira os dados separados por espaço e pressione enter.
 
 ### Dados agrupados por intervalo
 
-(ainda a ser implementado)
+* Media aritmética 
+* Mediana/ 2° Quartil
+* Variância
+* Desvio Padrão
+* Coeficiente de variação
