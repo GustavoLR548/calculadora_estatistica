@@ -23,7 +23,7 @@ ou
 
 ```python3 agrupados_por_intervalo.py``` se você estiver trabalhando com dados agrupados por intervalo
 
-Insira os dados separados por espaço e pressione enter.
+Insira os dados separados por vírgula e pressione enter. Ou... insira o diretório para um arquivo .csv (Update :D)
 
 # Dados a serem imprimidos na tela
 
@@ -39,6 +39,8 @@ Insira os dados separados por espaço e pressione enter.
 * Coeficiente de variação
 * 1° Quartil
 * 3° Quartil
+* Outlier maior
+* Outlier menor
 
 ## Dados agrupados por intervalo
 
