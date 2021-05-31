@@ -86,7 +86,7 @@ while ( quit != "-1"):
     else:
 
         entrada = input('Digite os dados separados por vírgula: \n-> ')
-        number_list.append(list(map(int,entrada.split(','))))
+        number_list.append(list(map(int,entrada.split())))
 
     print("\nResultado:\n")
 
