@@ -23,7 +23,37 @@ ou
 
 ```python3 agrupados_por_intervalo.py``` se você estiver trabalhando com dados agrupados por intervalo
 
-Insira os dados separados por vírgula e pressione enter. Ou... insira o diretório para um arquivo .csv (Update :D)
+Insira os dados separados espaço e pressione enter. Ou... insira o diretório para um arquivo .csv 
+
+## Exemplo:
+
+```
+De onde vêm os dados que você quer inserir? Digite:
+ 1 - CSV 
+ 2 - Input
+-> 1
+Nome do arquivo: 
+-> heart.csv -> (arquivo tem que estar no mesmo diretório do arquivo .python)
+
+Resultado:
+
+Tamanho da lista:                 303
+---------------------------------------
+Maior elemento:                   57
+Menor elemento:                 63
+---------------------------------------
+Ponto Médio:                        60.0
+Media aritmética:               54.37
+Moda:                                      [58] unimodal
+Variância:                              82.48%
+Desvio Padrão:                    9.08%
+Coeficiente de variação: 16.7%
+Quartil:                                 [47.0, 55.0, 61.0]
+Outlier superior:                82.0
+Outlier inferior:                  26.0
+
+Pressione enter para continuar
+```
 
 # Dados a serem imprimidos na tela
 
@@ -32,12 +62,12 @@ Insira os dados separados por vírgula e pressione enter. Ou... insira o diretó
 * Número de dados
 * Maior e Menor número
 * Media aritmética 
-* Mediana/ 2° Quartil
 * Moda (e o tipo de moda)
 * Variância
 * Desvio Padrão
 * Coeficiente de variação
 * 1° Quartil
+* Mediana/ 2° Quartil
 * 3° Quartil
 * Outlier maior
 * Outlier menor
