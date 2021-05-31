@@ -21,7 +21,8 @@ ou
 
 ```python3 agrupados_por_intervalo.py``` se você estiver trabalhando com dados agrupados por intervalo
 
-Insira os dados separados espaço e pressione enter. Ou... insira o diretório para um arquivo .csv 
+Insira os dados separados espaço e pressione enter. Ou... se você estiver trabalhando com dados agrupados por ponto, você também pode
+insirir o diretório para um arquivo .csv 
 
 ## Exemplo:
 
