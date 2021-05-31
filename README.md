@@ -7,7 +7,7 @@ Uma simples calculadora em python para fazer calculos de estatística em um grup
 # Como utilizar
 
 Antes de usar o programa, não se esqueça de baixar todos os pacotes necessários para utilizar os programas,
-mais especificadamente a instalação do "PrettyTables", biblioteca que usei para formatar o print dos resultados
+mais especificadamente a instalação do "PrettyTables" e o "pandas"
 
 Para instalar as bibliotecas necessárias, abra o terminal na pasta onde está o ```requirements.txt```, e digite: 
 
