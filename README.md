@@ -6,8 +6,6 @@ Uma simples calculadora em python para fazer calculos de estatística em um grup
 
 # Como utilizar
 
-*UPDATE* 
-
 Antes de usar o programa, não se esqueça de baixar todos os pacotes necessários para utilizar os programas,
 mais especificadamente a instalação do "PrettyTables", biblioteca que usei para formatar o print dos resultados
 
