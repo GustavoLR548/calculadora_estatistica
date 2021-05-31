@@ -1,6 +1,8 @@
 from math import sqrt
 import subprocess as sp
 import platform
+import pandas as pd
+import statistics
 
 def media_aritmetica(list):
     soma = 0
@@ -52,31 +54,6 @@ def variancia(list,ma):
 def coeficiente_de_variacao(list,dp,ma):
     return round(dp/ma*100,2)
 
-def primeiro_quartil(list):
-
-    result = 0.0
-    size = len(list) 
-    if(size%2 == 0):
-        result = media_aritmetica(list[1:int(size/2-1)])
-    else: 
-        result = media_aritmetica(list[1:int(size/2)])
-    
-    return round(result)
-
-def terceiro_quartil(list):
-
-    result = 0.0
-    size = len(list) 
-    if(size%2 == 0):
-        result = media_aritmetica(list[int(size/2+2):int(size-1)])
-    else: 
-        result = media_aritmetica(list[int(size/2+1):int(size-1)])
-    
-    return round(result)
-
- 
-input_string = ""
-
 os = platform.system()
 clear_screen = ""
 
@@ -92,55 +69,69 @@ while ( quit != "-1"):
 
     tmp = sp.call(clear_screen, shell=True)
 
-    input_string = input('Insira os números:\n(Obs: Coloque todos os números separados por espaço)\n(Obs2: Digite \'-1\' para sair do programa)\n->')
+    entrada = input('De onde vêm os dados que você quer inserir? Digite:\n 1 - CSV \n 2 - Input\n-> ')
 
-    if(input_string == '-1'):
-        break
+    number_list = []
 
-    number_list = list(map(float, input_string.split()))
+    if('1' in entrada):
+
+        entrada = input('Nome do arquivo: \n-> ')
+
+        data = pd.read_csv(entrada)
+
+        chaves = data.keys()
+
+        for i in chaves:
+            number_list.append(list(map(int,data[i])))
+    else:
+
+        entrada = input('Digite os dados separados por vírgula: \n-> ')
+        number_list.append(list(map(int,entrada.split(','))))
 
     print("\nResultado:\n")
 
-    number_list.sort()
+    for i in number_list:
+        ma = media_aritmetica(i)
+        me = mediana(i)
+        mo = moda(i)
+        va = variancia(i,ma)
+        dp = round(sqrt(va),2)
+        cv = coeficiente_de_variacao(i,dp,ma)
 
-    ma = media_aritmetica(number_list)
-    me = mediana(number_list)
-    mo = moda(number_list)
-    va = variancia(number_list,ma)
-    dp = round(sqrt(va),2)
-    cv = coeficiente_de_variacao(number_list,dp,ma)
+        q = statistics.quantiles(i)
 
-    q1 = primeiro_quartil(number_list)
-    q3 = terceiro_quartil(number_list)
+        tipo_de_moda = ""
 
-    tipo_de_moda = ""
+        if (len(mo) == 0):
+            tipo_de_moda = "amodal"
+        elif (len(mo) == 1):
+            tipo_de_moda = "unimodal"
+        elif (len(mo) == 2):
+            tipo_de_moda = "bimodal"
+        else: 
+            tipo_de_moda = "multimodal"
 
-    if (len(mo) == 0):
-        tipo_de_moda = "amodal"
-    elif (len(mo) == 1):
-        tipo_de_moda = "unimodal"
-    elif (len(mo) == 2):
-        tipo_de_moda = "bimodal"
-    else: 
-        tipo_de_moda = "multimodal"
+        size = len(i)
 
-    size = len(number_list)
+        print("Tamanho da lista:        " + str(size))
+        print("---------------------------------------")
 
-    print("Tamanho da lista:        " + str(size))
-    print("---------------------------------------")
+        print("Maior elemento:          " + str(i[size-1]))
+        print("Menor elemento:          " + str(i[0]))
+        print("---------------------------------------")
+        print("Ponto Médio:             " + str((i[size-1]+i[0])/2))
+        print("Media aritmética:        " + str(ma))
+        print("Moda:                    " + str(mo) + " " + tipo_de_moda)
+        print("Variância:               " + str(va) + "%")
+        print("Desvio Padrão:           " + str(dp) + "%")
+        print("Coeficiente de variação: " + str(cv) + "%") 
+        print("Quartil:                 " + str(q)) 
 
-    print("Maior elemento:          " + str(number_list[size-1]))
-    print("Menor elemento:          " + str(number_list[0]))
-    print("---------------------------------------")
-    print("Ponto Médio:             " + str((number_list[size-1]+number_list[0])/2))
-    print("Media aritmética:        " + str(ma))
-    print("Mediana/2°Quartil:       " + str(me))
-    print("Moda:                    " + str(mo) + " " + tipo_de_moda)
-    print("Variância:               " + str(va) + "%")
-    print("Desvio Padrão:           " + str(dp) + "%")
-    print("Coeficiente de variação: " + str(cv) + "%") 
-    print("Primeiro quartil:        " + str(q1)) 
-    print("Terceiro quartil:        " + str(q3))
+        print('Outlier superior:        ' + str(q[2] + 1.5*( q[2] - q[0])))
+        print('Outlier inferior:        ' + str(q[0] - 1.5*( q[2] - q[0])))
+
+        input('\nPressione enter para continuar')
+        tmp = sp.call(clear_screen, shell=True)
 
     quit = input("\nQuer sair do programa?\nDigite \'-1\' para sair\nDigite qualquer coisa para continuar\n->")
 
